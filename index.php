@@ -6,19 +6,24 @@
 	<body>
 	<?php include 'Navig.php';?>	
 	
+	<p class="recenter">
+	Ce service permet de transformer n'importe quel URL en un version plus compacte et facile a partager !<br>
+	Comment proceder ? Rien de plus simple ! <br>
+	Copier - Coller votre URL dans la barre de saisie ci-dessous et profiter !<br><br>
+	</p>
+	
 	<form method="POST" action="RequestNewLink.php">	
 		<h3>
-		<div>	
-		<input type = "text" class="big" value="" name ="Link" /><br>
-		</div>
-		<div>
+			
+		<input type = "text" class="big" value="" name ="Link" /><br><br><br>
+		
 		<input type = "submit" class="centered" value =" Raccourci moi">
-		</div>
+		
 		<?php
 			
 			if(isset($_GET["result"]))
 			{
-				 echo "Votre nouvelle mini URL ! : <a href='". $_SERVER['SERVER_NAME'] ."/r".$_GET["result"]."'> " . $_SERVER['SERVER_NAME'] ."/r".$_GET["result"] ."</a>";
+				 echo  "<p class='recenter'> Votre nouvelle mini URL ! : <a href='". $_SERVER['SERVER_NAME'] ."/r".$_GET["result"]."'> " . $_SERVER['SERVER_NAME'] ."/r".$_GET["result"] ."</a> </p>";
 			}
 			
 		?>

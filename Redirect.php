@@ -10,8 +10,16 @@ if(isset($_GET["Target"]))
 		  {			
 			
 			$Value = getRedirectLink($data);
+			$LLong = $Value["Lien_Long"];
+			if (str_starts_with($LLong , "http://") || str_starts_with($LLong , "https://") )
+				{
+					header("Location:".$LLong );
+				}else
+				{
+					header("Location:http://".$LLong );
+				}
 			
-			header("Location:".  $Value["Lien_Long"]);
+			
 		  }else
 		  {	  			  
 			  

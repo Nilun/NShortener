@@ -1,19 +1,18 @@
-<html>
-	<header>			
-		<link rel="stylesheet" href="main.css">
-	</header>
-	
-	<body>
-	<?php include 'Navig.php';?>	
-
-
 <?php
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('WWW-Authenticate: Basic realm="Admin"');
     header('HTTP/1.0 401 Unauthorized');   
     exit;
 } else {
-    				
+		 echo "<html>
+		 <header>			
+			 <link rel='stylesheet' href='main.css'>
+		 </header>
+		 
+		 <body>";
+	 
+	 
+			include 'Navig.php';	
 			include 'DataAccessLite.php';
 			if (isPasswordCorrect($_SERVER['PHP_AUTH_USER'] ,$_SERVER['PHP_AUTH_PW']))
 			{			  
@@ -46,7 +45,12 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 						
 						 while ($row = $result -> fetchArray())
 							 {				 
-								echo ("<tr><td>". $row[0]."</td><td>" .$row[1]."</td><td>".$_SERVER['SERVER_NAME'] ."/r".$row[2]."</td><td><a href='Admin.php?DELETE=".$row[0]."'><img src='cross.png'/></a></td><td><a href='Admin.php?Edit=".$row[0]."'><img src='edit.png'/></a></td><td><a href='Stats.php?T=".$row[0]."'><img src='stats.png'/></a></td></tr>");			
+								echo ("<tr><td>". $row[0].
+									  "</td><td>" .$row[1].
+									  "</td><td>".$_SERVER['HTTP_HOST'] ."/r".$row[2].
+									  "</td><td><a href='Admin.php?DELETE=".$row[0]."'><img src='Cross.png'/></a>
+									   </td><td><a href='Admin.php?Edit=".$row[0]."'><img src='Edit.png'/></a>
+									   </td><td><a href='Stats.php?T=".$row[0]."'><img src='Stats.png'/></a></td></tr>");			
 							}
 							
 							

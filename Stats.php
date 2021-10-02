@@ -19,7 +19,7 @@
 			$DateCrea = $Value["DateCrea"];	
 			$LienLong = $Value["Lien_Long"];
 			echo "Lien Long :  <a href ='".$LienLong."' >".$LienLong."  </a> <br/> ";				
-			echo "Lien Court  : ".$_SERVER['SERVER_NAME'] ."/r".$Value["Lien_Court"]."  <br/> ";
+			echo "Lien Court  : ".$_SERVER['HTTP_HOST'] ."/r".$Value["Lien_Court"]."  <br/> ";
 			echo "Date de Creation :".date("Y-m-d" , $DateCrea )."<br>"; 			
 							
 			$NbClick = getNbClick($_GET["T"]);

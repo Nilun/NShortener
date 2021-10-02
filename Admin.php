@@ -13,41 +13,15 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('HTTP/1.0 401 Unauthorized');   
     exit;
 } else {
-    	
-			$serveurBD = "localhost";
-			$nomUtilisateur = "Admin";
-			$motDePasse = "c344RqtvsgGCA8K";
-			$baseDeDonnees = "shortener";
-		   
-			$mysqli = new mysqli($serveurBD,
-						  $nomUtilisateur,
-						  $motDePasse,
-						  $baseDeDonnees);	
-			$result = $mysqli->query("SELECT Password FROM utilisateur WHERE user = '".$_SERVER['PHP_AUTH_USER']."'") or die(mysqli_error($mysqli));	
-			$Value = $result->fetch_assoc();			
-			$Password = array_values($Value)[0];
-			
-			if (password_verify($_SERVER['PHP_AUTH_PW'], $Password))
-			{
-
-
-
-						$serveurBD = "localhost";
-						$nomUtilisateur = "Admin";
-						$motDePasse = "c344RqtvsgGCA8K";
-						$baseDeDonnees = "shortener";
-					   
-						$mysqli = new mysqli($serveurBD,
-									  $nomUtilisateur,
-									  $motDePasse,
-									  $baseDeDonnees);		  
-					  
+    				
+			include 'DataAccess.php';
+			if (isPasswordCorrect($_SERVER['PHP_AUTH_USER'] ,$_SERVER['PHP_AUTH_PW']))
+			{			  
 					  
 						if (isset ($_GET["Edit"]))
-							{
+							{							
 								
-								$result = $mysqli->query("SELECT * FROM lien WHERE ID = ".$_GET["Edit"]) or die(mysqli_error($mysqli));	
-								$Value = $result->fetch_assoc();
+								$Value = getLienRaw($_GET["Edit"]);
 								echo "<Form Action='Admin.php'  class='centered' Method='POST'> ";
 								echo "<input type='TEXT' Value='".array_values($Value)[0]."' Name='IDEdit' readonly='readonly' /> <br>";
 								echo "Lien Long : <input type='TEXT' Value= '".array_values($Value)[1]."' Name = 'EditNewLong'/> <br/> ";				
@@ -59,19 +33,13 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 							
 						if (isset ($_POST["EditNewLong"]) && isset ($_POST["EditNewCourt"]) && isset($_POST["IDEdit"]))
 							{
-								
-								$result = $mysqli->query("UPDATE lien
-														  SET Lien_Long = '".$_POST["EditNewLong"]."' , Lien_Court='".$_POST["EditNewCourt"]."'
-														  WHERE ID = ".$_POST["IDEdit"]) or die(mysqli_error($mysqli));	
-								
-								
+								updateLink	($_POST["IDEdit"],$_POST["EditNewCourt"],$_POST["EditNewLong"]);
 							}
 						if (isset ($_GET["DELETE"]))
 							{
-								$result = $mysqli->query("DELETE FROM lien	WHERE ID = ".$_GET["DELETE"]) or die(mysqli_error($mysqli));	
-								$result = $mysqli->query("DELETE FROM stat	WHERE ID = ".$_GET["DELETE"]) or die(mysqli_error($mysqli));
+								deleteLink($_GET["DELETE"]);
 							}
-						$result = $mysqli->query("SELECT * FROM lien ") or die(mysqli_error($mysqli));			
+						$result = getAllLink();		
 						
 						echo "<table class='Centered'>"	;
 						

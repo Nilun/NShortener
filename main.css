@@ -48,7 +48,7 @@ button.Navig
 {		
 	  position: relative;
 	 left: 25%;
-	 
+	 /* top : 35px; */
 	 height : 40px;
 		
 	 font-family: "Courier New", "Courier New", serif;	

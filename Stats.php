@@ -6,37 +6,25 @@
 	<body>
 		<?PHP
 		 include 'Navig.php';
+		 include 'DataAccess.php';
+		 
 		echo" <div  class='Centered'>" ;
 		  if (isset ($_GET["T"]))
 		  {
-			  $serveurBD = "localhost";
-					$nomUtilisateur = "Admin";
-					$motDePasse = "c344RqtvsgGCA8K";
-					$baseDeDonnees = "shortener";
-				   
-					$mysqli = new mysqli($serveurBD,
-								  $nomUtilisateur,
-								  $motDePasse,
-								  $baseDeDonnees);		
-			$result = $mysqli->query("SELECT * FROM lien Where ID =".$_GET["T"]) or die(mysqli_error($mysqli));			
+			 
+			$Value = getLienRaw($_GET["T"]);						
 					
-			echo "<table class='Centered'>"	;
-					
-					
-			$Value = $result->fetch_assoc();					
+			echo "<table class='Centered'>"	;							
+								
 			$DateCrea = array_values($Value)[3];	
 			$LienLong = array_values($Value)[1];
 			echo "Lien Long :  <a href ='".$LienLong."' >".array_values($Value)[1]."  </a> <br/> ";				
 			echo "Lien Court  : ".$_SERVER['SERVER_NAME'] ."/r".array_values($Value)[2]."  <br/> ";
-			echo "Date de Creation :".$DateCrea ."<br>"; 
-			
-			$result = $mysqli->query("SELECT Count(*) FROM stat Where ID =".$_GET["T"]) or die(mysqli_error($mysqli));							
-			$Value = $result->fetch_assoc();					
-			$NbClick = array_values($Value)[0];
-			
-			$result = $mysqli->query("Select MAX(TT) From (SELECT Count(*) AS TT , date FROM stat Where ID =".$_GET["T"]." GROUP BY CAST(Date AS DATE) )AS SUBQUERY  ") or die(mysqli_error($mysqli));							
-			$Value = $result->fetch_assoc();					
-			$MaxJour = array_values($Value)[0];
+			echo "Date de Creation :".$DateCrea ."<br>"; 			
+							
+			$NbClick = getNbClick($_GET["T"]);
+										
+			$MaxJour = MaxJour($_GET["T"]) ;
 			
 			$timeDiff = abs(time() - strtotime($DateCrea));
 			$numberDays = $timeDiff/86400; // nb second 

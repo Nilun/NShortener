@@ -6,6 +6,7 @@
 	<body>
 	<?php include 'Navig.php';?>	
 	
+	
 	<p class="recenter">
 	Ce service permet de transformer n'importe quel URL en un version plus compacte et facile a partager !<br>
 	Comment proceder ? Rien de plus simple ! <br>

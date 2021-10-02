@@ -8,9 +8,9 @@
 	
 	
 	<p class="recenter">
-	Ce service permet de transformer n'importe quel URL en un version plus compacte et facile a partager !<br>
+	Ce service permet de transformer n'importe quel URL en un version plus compacte et facile à partager !<br>
 	Comment proceder ? Rien de plus simple ! <br>
-	Copier - Coller votre URL dans la barre de saisie ci-dessous et profiter !<br><br>
+	Copiez - Collez votre URL dans la barre de saisie ci-dessous et profitez !<br><br>
 	</p>
 	
 	<form method="POST" action="RequestNewLink.php">	
@@ -18,7 +18,7 @@
 			
 		<input type = "text" class="big" value="" name ="Link" /><br><br><br>
 		
-		<input type = "submit" class="centered" value =" Raccourci moi">
+		<input type = "submit" class="centered" value =" Raccourci-moi">
 		
 		<?php
 			

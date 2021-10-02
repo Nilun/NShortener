@@ -14,7 +14,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     exit;
 } else {
     				
-			include 'DataAccess.php';
+			include 'DataAccessLite.php';
 			if (isPasswordCorrect($_SERVER['PHP_AUTH_USER'] ,$_SERVER['PHP_AUTH_PW']))
 			{			  
 					  
@@ -23,9 +23,9 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 								
 								$Value = getLienRaw($_GET["Edit"]);
 								echo "<Form Action='Admin.php'  class='centered' Method='POST'> ";
-								echo "<input type='TEXT' Value='".array_values($Value)[0]."' Name='IDEdit' readonly='readonly' /> <br>";
-								echo "Lien Long : <input type='TEXT' Value= '".array_values($Value)[1]."' Name = 'EditNewLong'/> <br/> ";				
-								echo "Lien Court  : <input type='TEXT' Value= '".array_values($Value)[2]."' Name = 'EditNewCourt'/> <br/> ";				
+								echo "<input type='TEXT' Value='".($Value)[0]."' Name='IDEdit' readonly='readonly' /> <br>";
+								echo "Lien Long : <input type='TEXT' Value= '".($Value)[1]."' Name = 'EditNewLong'/> <br/> ";				
+								echo "Lien Court  : <input type='TEXT' Value= '".($Value)[2]."' Name = 'EditNewCourt'/> <br/> ";				
 								echo "<input type = 'submit' value ='Valid'>";
 								echo "</Form><Br><Br><Br><Br><HR Width = '25%'>";
 								
@@ -44,14 +44,14 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 						echo "<table class='Centered'>"	;
 						
 						
-						 while ($row = $result -> fetch_row())
+						 while ($row = $result -> fetchArray())
 							 {				 
 								echo ("<tr><td>". $row[0]."</td><td>" .$row[1]."</td><td>".$_SERVER['SERVER_NAME'] ."/r".$row[2]."</td><td><a href='Admin.php?DELETE=".$row[0]."'><img src='cross.png'/></a></td><td><a href='Admin.php?Edit=".$row[0]."'><img src='edit.png'/></a></td><td><a href='Stats.php?T=".$row[0]."'><img src='stats.png'/></a></td></tr>");			
 							}
 							
 							
 						echo "</table>";
-						$result -> free_result();
+						
 			}
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-include 'DataAccess.php';
+include 'DataAccessLite.php';
 if(isset($_GET["Target"]))
     {
 				
@@ -10,7 +10,8 @@ if(isset($_GET["Target"]))
 		  {			
 			
 			$Value = getRedirectLink($data);
-			header("Location:". array_values($Value)[1]);
+			
+			header("Location:".  $Value["Lien_Long"]);
 		  }else
 		  {	  			  
 			  
@@ -22,4 +23,3 @@ if(isset($_GET["Target"]))
 	{
 		echo 'nope';
 	}
-?>

@@ -6,7 +6,7 @@
 	<body>
 		<?PHP
 		 include 'Navig.php';
-		 include 'DataAccess.php';
+		 include 'DataAccessLite.php';
 		 
 		echo" <div  class='Centered'>" ;
 		  if (isset ($_GET["T"]))
@@ -16,17 +16,17 @@
 					
 			echo "<table class='Centered'>"	;							
 								
-			$DateCrea = array_values($Value)[3];	
-			$LienLong = array_values($Value)[1];
-			echo "Lien Long :  <a href ='".$LienLong."' >".array_values($Value)[1]."  </a> <br/> ";				
-			echo "Lien Court  : ".$_SERVER['SERVER_NAME'] ."/r".array_values($Value)[2]."  <br/> ";
-			echo "Date de Creation :".$DateCrea ."<br>"; 			
+			$DateCrea = $Value["DateCrea"];	
+			$LienLong = $Value["Lien_Long"];
+			echo "Lien Long :  <a href ='".$LienLong."' >".$LienLong."  </a> <br/> ";				
+			echo "Lien Court  : ".$_SERVER['SERVER_NAME'] ."/r".$Value["Lien_Court"]."  <br/> ";
+			echo "Date de Creation :".date("Y-m-d" , $DateCrea )."<br>"; 			
 							
 			$NbClick = getNbClick($_GET["T"]);
 										
 			$MaxJour = MaxJour($_GET["T"]) ;
 			
-			$timeDiff = abs(time() - strtotime($DateCrea));
+			$timeDiff = abs(time() - intval($DateCrea));
 			$numberDays = $timeDiff/86400; // nb second 
 			$numberDays = intval($numberDays);
 			Echo "Créer depuis : " . $numberDays . " Jours <br/>";

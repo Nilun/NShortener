@@ -24,7 +24,7 @@
 			
 			if(isset($_GET["result"]))
 			{
-				 echo  "<p class='recenter'> Votre nouvelle mini URL ! : <a href='". $_SERVER['SERVER_NAME'] ."/r".$_GET["result"]."'> " . $_SERVER['SERVER_NAME'] ."/r".$_GET["result"] ."</a> </p>";
+				 echo  "<p class='recenter'> Votre nouvelle mini URL ! : <a href='http://". $_SERVER['SERVER_NAME'] ."/r".$_GET["result"]."'> " . $_SERVER['SERVER_NAME'] ."/r".$_GET["result"] ."</a> </p>";
 			}
 			
 		?>

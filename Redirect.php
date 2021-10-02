@@ -22,8 +22,8 @@ if(isset($_GET["Target"]))
 			
 		  }else
 		  {	  			  
-			  
-				header("Location: Stats.php?T=". getIDFromShort($data));
+			
+				header("Location: Stats.php?T=". getIDFromShort(trim($data)));
 				
 		  }
 	}

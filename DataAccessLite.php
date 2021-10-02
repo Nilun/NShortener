@@ -91,7 +91,11 @@
 	
 	function insertNewURL($data , $lastID)
 	{
-		 
+		if (!str_starts_with($data , "http://") && !str_starts_with($data , "https://") )
+			{
+				$data = "http://".$data;
+			}
+
 		  $mysqli = connection();			
 		  $result =  $mysqli->query("INSERT INTO lien(ID,Lien_Long ,Lien_Court,DateCrea ) VALUES ($lastID +1, '".$data."','". dechex($lastID +1 ) ."',".time().")") ; 
 	}

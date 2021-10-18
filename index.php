@@ -1,9 +1,10 @@
 <html>
 	<header>			
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href=".\Style\main.css">
 	</header>
 	
 	<body>
+		
 	<?php include 'Navig.php';?>	
 	
 	
@@ -24,7 +25,7 @@
 			
 			if(isset($_GET["result"]))
 			{
-				 echo  "<p class='recenter'> Votre nouvelle mini URL ! : <a href='http://". $_SERVER['HTTP_HOST'] ."/r".$_GET["result"]."'> " . $_SERVER['HTTP_HOST'] ."/r".$_GET["result"] ."</a> </p>";
+				 echo  "<p class='recenter'> Votre nouvelle mini URL ! : <a href='http://".$_GET["result"]."'> " . $_GET["result"] ."</a> </p>";
 			}
 			
 		?>

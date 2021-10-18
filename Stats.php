@@ -1,12 +1,12 @@
 <html>
 	<header>			
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="Style/main.css">
 	</header>
-	 <script src="script.js"></script>
+	 <script src="Script/script.js"></script>
 	<body>
 		<?PHP
 		 include 'Navig.php';
-		 include 'DataAccessLite.php';
+		 include 'BDD/DataAccessLite.php';
 		 
 		echo" <div  class='Centered'>" ;
 		  if (isset ($_GET["T"]))
@@ -35,7 +35,7 @@
 			if($numberDays>0) {	echo "Nombre de Consultation Moyenne par Jour : "  . ($NbClick /$numberDays) ;}
 		
 		
-			echo " <img id='screenshot' src='Loading.png' />";
+			echo " <img id='screenshot' src='Images/Loading.png' />";
 						
 		  }
 		 echo"<script >GetImages('".$LienLong."')</script>";

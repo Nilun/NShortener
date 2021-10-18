@@ -6,16 +6,17 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 } else {
 		 echo "<html>
 		 <header>			
-			 <link rel='stylesheet' href='main.css'>
+			 <link rel='stylesheet' href='Style/main.css'>
 		 </header>
 		 
 		 <body>";
 	 
 	 
 			include 'Navig.php';	
-			include 'DataAccessLite.php';
+			include 'BDD/DataAccessLite.php';
 			if (isPasswordCorrect($_SERVER['PHP_AUTH_USER'] ,$_SERVER['PHP_AUTH_PW']))
-			{			  
+			{		
+					  
 					  
 						if (isset ($_GET["Edit"]))
 							{							
@@ -41,21 +42,25 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 						$result = getAllLink();		
 						
 						echo "<table class='Centered'>"	;
-						
+						 
 						
 						 while ($row = $result -> fetchArray())
-							 {				 
+							 {			
+								
 								echo ("<tr><td>". $row[0].
 									  "</td><td>" .$row[1].
 									  "</td><td>".$_SERVER['HTTP_HOST'] ."/r".$row[2].
-									  "</td><td><a href='Admin.php?DELETE=".$row[0]."'><img src='Cross.png'/></a>
-									   </td><td><a href='Admin.php?Edit=".$row[0]."'><img src='Edit.png'/></a>
-									   </td><td><a href='Stats.php?T=".$row[0]."'><img src='Stats.png'/></a></td></tr>");			
+									  "</td><td><a href='Admin.php?DELETE=".$row[0]."'><img src='Images/Cross.png'/></a>
+									   </td><td><a href='Admin.php?Edit=".$row[0]."'><img src='Images/Edit.png'/></a>
+									   </td><td><a href='Stats.php?T=".$row[0]."'><img src='Images/Stats.png'/></a></td></tr>");			
 							}
 							
 							
 						echo "</table>";
 						
+			}else
+			{
+				header('WWW-Authenticate: Basic realm="Admin"');
 			}
 }
 ?>

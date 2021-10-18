@@ -2,7 +2,7 @@
 
  include ("./Classe/src/phpmailer.php");
  include ( "./Classe/src/smtp.php");
- include ( "Config.php");
+ include ( "Style/Config.php");
 	use PHPMailer\PHPMailer\PHPMailer;
 
 $mail = new PHPMailer();  // create a new object

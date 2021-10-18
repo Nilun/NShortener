@@ -1,16 +1,16 @@
 <?PHP
-	include ("Config.php");
+	include ("./Data/Config.php");
 	class MyDB extends SQLite3
 		{
 			function __construct()
 			{
 				try
 				{
-					$this->open('shortener.db',SQLITE3_OPEN_READWRITE);
+					$this->open('BDD/shortener.db',SQLITE3_OPEN_READWRITE);
 				
 				}catch(exception $e)
 				{
-					$this->open('shortener.db');
+					$this->open('BDD/shortener.db');
 					initBDD($this);
 				
 				}				
@@ -159,5 +159,23 @@
 			$Value = $result->fetchArray();	
 			//var_dump($Value); 				
 			return $Value["RESULT"];
+	}
+	function exist($longLink)
+	{
+		$mysqli = connection();
+		$result = $mysqli->query("SELECT Count(*) FROM lien Where Lien_Long ='".$longLink."'" ) ;		
+		$Value = $result->fetchArray();
+		if ($Value["RESULT"] == 0)
+		{
+			return false;
+		}					
+		return true;
+	}
+	function getShortFromLong($longLink)
+	{
+		$mysqli = connection();
+		$result = $mysqli->query("SELECT Lien_Court FROM lien WHERE Lien_Long = '".$longLink."'" ) ;	
+		$Value = $result->fetchArray();
+		return $Value['Lien_Court'];
 	}
 ?>

@@ -1,6 +1,6 @@
 
 	<header>			
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="Style/main.css">
 	</header>
 <body>
 	<?php include 'Navig.php';?>
